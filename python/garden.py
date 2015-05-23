@@ -36,7 +36,7 @@ def setup_led():
     GPIO.setup(BUTTON_LED, GPIO.OUT, False)
 
 def setup_switch():
-    GPIO.setup(SWITCH, GPIO.IN)
+    GPIO.setup(SWITCH, GPIO.IN, PULL)
 
 def control_led(on):
     GPIO.output(BUTTON_LED, on)

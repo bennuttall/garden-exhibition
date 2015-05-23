@@ -6,7 +6,7 @@
 
 ## Requirements
 
-- Adafruit's Dotstar Python library (not on PyPi and requires Python 2)
+- [Adafruit's Dotstar Python library](github.com/adafruit/Adafruit_DotStar_Pi) (not on PyPi and requires Python 2)
 
 ```bash
 sudo apt-get install python-dev

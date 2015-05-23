@@ -1,4 +1,4 @@
-from __future__ import division
+from __future__ import print_function, division
 from RPi import GPIO
 from dotstar import Adafruit_DotStar
 from random import randint

@@ -1,8 +1,12 @@
 # Garden Exhibition
 
+## Components
+
+- [Adafruit Dotstar LED strip](https://www.adafruit.com/products/2241)
+
 ## Requirements
 
-Requires Adafruit's Dotstar Python library, which is not on PyPi and requires Python 2
+- Adafruit's Dotstar Python library (not on PyPi and requires Python 2)
 
 ```bash
 sudo apt-get install python-dev

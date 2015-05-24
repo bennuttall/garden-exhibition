@@ -3,8 +3,8 @@ from MCP3008 import MCP3008
 from dotstar import Adafruit_DotStar
 from time import sleep
 
-def get_analogue_value(channel):
-    with MCP3008(channel=channel) as ch:
+def get_analogue_value(device, channel):
+    with MCP3008(device=device, channel=channel) as ch:
         return ch.read()
 
 def green_red_bar_graph(num_green):
@@ -34,10 +34,13 @@ RED = (255, 0, 0)
 
 def main():
     while True:
-        value = get_analogue_value(0)
+        channels = [0]
+        devices = [0, 1]
+        values = [get_analogue_value(device=d, channel=c) for c in channels for d in devices]
         max_value = 1023
-        num_green = int((value / max_value) * NUM_LEDS)
-        print(value, num_green)
+        average = sum(values) / (max_value * len(values))
+        num_green = int(average * NUM_LEDS)
+        print(average, num_green)
         green_red_bar_graph(num_green)
 
 if __name__ == '__main__':

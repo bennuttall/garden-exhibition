@@ -14,8 +14,8 @@ BOUNCE = 1000
 BUTTON = 18
 
 NUM_LEDS = 100
-DATAPIN = 15
-CLOCKPIN = 14
+DATAPIN = 14
+CLOCKPIN = 15
 
 # colours
 GREEN = (0, 255, 0)
@@ -59,9 +59,15 @@ def show_score(score):
     Display score on LED matrix
     """
 
+    pause = 0.1
+
     for led in range(score):
         set_pixel(led, GREEN)
-        sleep(0.1)
+        sleep(pause)
+
+    for led in range(score + 1, NUM_LEDS + 1):
+        set_pixel(led, RED)
+        sleep(pause)
 
 def callback(pin):
     print("Run", pin)
@@ -75,13 +81,14 @@ def main():
     strip.begin()
 
     strip.setBrightness(255)
-    clear_strip(RED)
+    strip.clear()
     sleep(2)
 
     print("Ready...")
 
     while True:
-        GPIO.wait_for_edge(BUTTON, EDGE, BOUNCE)
+        GPIO.wait_for_edge(BUTTON, EDGE)
+        strip.clear()
         score = calculate_score()
         print("Score is %s" % score)
         show_score(score)

@@ -14,8 +14,8 @@ BOUNCE = 1000
 BUTTON = 18
 
 NUM_LEDS = 100
-DATAPIN = 14
-CLOCKPIN = 15
+DATAPIN = 15
+CLOCKPIN = 14
 
 # colours
 GREEN = (0, 255, 0)
@@ -87,11 +87,12 @@ def main():
     print("Ready...")
 
     while True:
-        GPIO.wait_for_edge(BUTTON, EDGE)
+        #GPIO.wait_for_edge(BUTTON, EDGE)
         strip.clear()
         score = calculate_score()
         print("Score is %s" % score)
         show_score(score)
+        sleep(60)
 
 if __name__ == '__main__':
     main()

@@ -21,7 +21,8 @@ CLOCKPIN = 14
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 
-strip = Adafruit_DotStar(NUM_LEDS, DATAPIN, CLOCKPIN)
+#strip = Adafruit_DotStar(NUM_LEDS, DATAPIN, CLOCKPIN)
+strip = Adafruit_DotStar(NUM_LEDS, 32000000)
 
 def setup_button():
     """
@@ -65,7 +66,7 @@ def show_score(score):
         set_pixel(led, GREEN)
         sleep(pause)
 
-    for led in range(score + 1, NUM_LEDS + 1):
+    for led in range(score, NUM_LEDS + 1):
         set_pixel(led, RED)
         sleep(pause)
 
@@ -82,17 +83,19 @@ def main():
 
     strip.setBrightness(255)
     strip.clear()
+    strip.show()
     sleep(2)
 
     print("Ready...")
 
     while True:
-        #GPIO.wait_for_edge(BUTTON, EDGE)
+        GPIO.wait_for_edge(BUTTON, EDGE)
         strip.clear()
+        strip.show()
         score = calculate_score()
         print("Score is %s" % score)
         show_score(score)
-        sleep(60)
+        sleep(20)
 
 if __name__ == '__main__':
     main()

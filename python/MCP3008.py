@@ -11,19 +11,19 @@ class MCP3008:
 
     def open(self):
         self.spi.open(self.bus, self.device)
-    
+
     def read(self):
         adc = self.spi.xfer2([1, (8 + self.channel) << 4, 0])
         data = ((adc[1] & 3) << 8) + adc[2]
         return data
 
     def __exit__(self, type, value, traceback):
-            self.close()
-            
+        self.close()
+
     def close(self):
         self.spi.close()
 
 #test
-if __name__ == "__main__":    
+if __name__ == "__main__":
     with MCP3008(channel = 0) as ch0:
         print ch0.read()
